@@ -1,0 +1,27 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/authors.css' %}">
+{% endblock %}
+
+{% block title %}
+Authors
+{% endblock %}
+
+{% block authors %}
+<div class="authors">
+    {% for author in authors %}
+        <a href="{% url 'book:author' author.slug %}">
+            <div class="author">
+                <img src="{{ author.author_image.url }}" alt="author image">
+                <div class="author-content">
+                    <p class="text-style">
+                        Author: {{ author.name|title }}
+                    </p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

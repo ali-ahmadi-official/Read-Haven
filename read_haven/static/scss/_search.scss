@@ -1,0 +1,43 @@
+@import 'theme';
+@import 'flex';
+
+form {
+    @include f-c-c;
+    height: 35px;
+    border-radius: 35px;
+    overflow: hidden;
+    width: auto;
+    font-family: "Montserrat", sans-serif;
+
+    input[type=search] {
+        padding: 6px 6px 6px 12px;
+        font-size: 17px;
+        height: 100%;
+        border: none;
+        outline: none;
+        color: $site-color-3;
+    }
+
+    .search-btn {
+        @include f-c-c;
+        padding: 8px 16px 8px 10px;
+        height: 100%;
+        background: $site-color-1;
+        border: none;
+        border-radius: 0;
+        cursor: pointer;
+        transition: all .5s ease;
+
+        path {
+            color: $site-color-3;
+        }
+
+        &:hover {
+            background: $site-color-2;
+
+            path {
+                color: $body-color;
+            }
+        }
+    }
+}

@@ -1,0 +1,21 @@
+{% extends 'base/base_profile.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/delete-book.css' %}">
+{% endblock %}
+
+{% block title %}
+Delete {{ object.title|title }}
+{% endblock %}
+
+{% block section %}
+<div class="delete">
+    <h4>Are you sure you want to delete book "{{ object.title|title }}" written by "{{ object.author|title }}"?</h4>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+        <a href="{% url 'account:my_books' %}">Cancel</a>
+    </form>
+</div>
+{% endblock %}

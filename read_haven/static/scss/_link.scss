@@ -1,0 +1,13 @@
+@import 'theme';
+
+a {
+    text-decoration: none;
+
+    &:hover, li:hover, p:hover, div:hover {
+        color: $site-color-2;
+
+        path {
+            color: $site-color-2;
+        }
+    }
+}

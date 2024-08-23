@@ -1,0 +1,399 @@
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playwrite+AR:wght@100..400&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playwrite+AR:wght@100..400&display=swap';
+#price {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+input[type=button], button[type=submit], input[type=submit] {
+  background-color: #F5841A;
+  color: #03002C;
+  font-weight: 900;
+  padding: 15px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+input[type=button] path, button[type=submit] path, input[type=submit] path {
+  color: #03002C;
+  transition: all .5s ease;
+}
+
+input[type=button]:hover, button[type=submit]:hover, input[type=submit]:hover {
+  background-color: #BB0029;
+  color: #F2E8C6;
+}
+
+input[type=button]:hover path, button[type=submit]:hover path, input[type=submit]:hover path {
+  background-color: #BB0029;
+  color: #F2E8C6;
+}
+
+#price {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+#price {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover, a li:hover, a p:hover, a div:hover {
+  color: #BB0029;
+}
+
+a:hover path, a li:hover path, a p:hover path, a div:hover path {
+  color: #BB0029;
+}
+
+#price {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  border-radius: 35px;
+  overflow: hidden;
+  width: auto;
+  font-family: "Montserrat", sans-serif;
+}
+
+form input[type=search] {
+  padding: 6px 6px 6px 12px;
+  font-size: 17px;
+  height: 100%;
+  border: none;
+  outline: none;
+  color: #03002C;
+}
+
+form .search-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px 8px 10px;
+  height: 100%;
+  background: #F5841A;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+form .search-btn path {
+  color: #03002C;
+}
+
+form .search-btn:hover {
+  background: #BB0029;
+}
+
+form .search-btn:hover path {
+  color: #FBFDF8;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #03002C;
+  font-family: "Montserrat", sans-serif;
+}
+
+.list {
+  position: fixed;
+  width: 100%;
+  left: -100%;
+  top: 0;
+  z-index: 10000;
+  transition: all 0.3s ease-in-out;
+}
+
+.list .profile-list {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 70px;
+  background-color: #F2E8C6;
+}
+
+.list .profile-list .profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list .profile-list .profile img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border: 3px solid #fff;
+  border-radius: 100%;
+  margin-right: 10px;
+}
+
+.list .profile-list svg {
+  cursor: pointer;
+}
+
+.list ul {
+  list-style: none;
+  height: 100%;
+  padding-top: 20px;
+  background-color: #F2E8C6;
+  padding-bottom: 20px;
+  min-height: calc(100vh - 70px);
+}
+
+.list ul li {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px;
+  border-radius: 5px;
+  background-color: #FBFDF8;
+  margin: 20px 40px;
+}
+
+.list ul li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list ul li:first-child {
+  margin-top: 0;
+}
+
+.list ul li svg {
+  margin-right: 8px;
+}
+
+.none {
+  left: 0;
+}
+
+section {
+  width: 100%;
+}
+
+.navbar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 20px;
+  background-color: #F2E8C6;
+}
+
+.navbar #logout-form {
+  height: auto;
+  overflow: visible;
+}
+
+#logout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+#logout p {
+  display: none;
+}
+
+.url {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-column: 1 / 4;
+  width: 100%;
+}
+
+input[type=search] {
+  width: 130px;
+}
+
+@media screen and (min-width: 768px) {
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 70px;
+    padding: 0;
+  }
+  .url {
+    width: auto;
+  }
+  input[type=search] {
+    width: auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    justify-content: space-between;
+    background-color: #FBFDF8;
+    min-height: 100vh;
+  }
+  .mobile-svg {
+    display: none;
+  }
+  .list {
+    position: static;
+    width: 20%;
+  }
+  .list .svg {
+    display: none;
+  }
+  .list .profile-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding-left: 40px;
+  }
+  section {
+    width: 80%;
+  }
+  #logout {
+    padding: 15px;
+    border-radius: 20px;
+  }
+  #logout p {
+    display: block;
+  }
+  #logout svg {
+    margin-right: 8px;
+  }
+}
+
+#price {
+  font-family: "Playfair Display", serif;
+  font-size: 20px;
+  font-weight: 300;
+}
+
+.form {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 20px;
+  padding-bottom: 0;
+}
+
+.form div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.form div label {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.form div input, .form div textarea {
+  width: 100%;
+  border: none;
+  outline: none;
+  background-color: #F2E8C6;
+  border-radius: 10px;
+  height: 60px;
+  padding: 20px;
+}
+
+.form div textarea {
+  resize: none;
+  height: 300px;
+}
+
+.form .helptext {
+  font-size: 12px;
+  margin-top: 0;
+}
+
+.form select {
+  width: 250px;
+  height: 150px;
+  padding: 20px;
+  background-color: #F2E8C6;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+
+.form select option {
+  font-size: 16px;
+  margin: 5px 0;
+  background-color: #FBFDF8;
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.form select option:first-child {
+  margin-top: 0;
+}
+
+.form #id_availability, .form #id_price_validity, .form #id_type_of_book {
+  height: auto;
+}
+
+.photos div {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  margin-top: 0;
+}
+
+.photos div label {
+  margin-bottom: 0;
+  margin-right: 10px;
+}
+
+.photos input[type=checkbox] {
+  width: 18px;
+}
+
+.send {
+  margin-bottom: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    padding: 40px 60px;
+  }
+}

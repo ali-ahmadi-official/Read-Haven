@@ -1,0 +1,28 @@
+@import 'theme';
+
+input[type=button], button[type=submit], input[type=submit] {
+    background-color: $site-color-1;
+    color: $site-color-3;
+    font-weight: 900;
+    padding: 15px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all .5s ease;
+
+    path {
+        color: $site-color-3;
+        transition: all .5s ease;
+    }
+
+    &:hover {
+        background-color: $site-color-2;
+        color: $footer-color;
+
+        path {
+            background-color: $site-color-2;
+            color: $footer-color;
+        }
+    }
+}

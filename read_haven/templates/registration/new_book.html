@@ -1,0 +1,23 @@
+{% extends 'base/base_profile.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/book-create.css' %}">
+{% endblock %}
+
+{% block title %}
+New Book
+{% endblock %}
+
+{% block section %}
+<form method="post" class="form" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_div }}
+    {{ photos.management_form }}
+    <div class="photos" id="photo-forms">
+        {% for form in photos %}
+            {{ form.as_div }}
+        {% endfor %}
+    </div>
+    <input type="submit" value="Send Your Book" class="send">
+</form>
+{% endblock %}

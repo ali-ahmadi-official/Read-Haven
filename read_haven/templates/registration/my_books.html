@@ -1,0 +1,62 @@
+{% extends 'base/base_profile.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/my-books.css' %}">
+{% endblock %}
+
+{% block title %}
+My Books
+{% endblock %}
+
+{% block section %}
+<div class="my-books">
+    <p>RowId</p>
+    <p>Cover Image</p>
+    <p>Title</p>
+    <p>Author</p>
+    <p>Book Publish Year</p>
+    <p>Price</p>
+    <P>Status</P>
+    <p>Action 1</p>
+    <p>Action 2</p>
+    {% for book in myBooks %}
+        <p id="row"></p>
+        <img src="{{ book.cover_image.url }}" alt="my book image">
+        <p>{{ book.title|title }}</p>
+        <p>{{ book.author|title }}</p>
+        <p>{{ book.book_publish_year }}</p>
+        {% if book.availability_and_price_validity == 'Out Of Stock' %}
+            <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+        {% elif book.availability_and_price_validity == 'Free' %}
+            <p id="free">{{ book.availability_and_price_validity }}</p>
+        {% else %}
+            <p id="price">${{ book.price|floatformat:2 }}</p>
+        {% endif %}
+
+        {% if book.status == 'p' %}
+            <p id="p">Published</p>
+        {% else %}
+            <p id="i">Draft</p>
+        {% endif %}
+
+        {% if book.status == 'p' %}
+            <a href="{% url 'book:book' book.slug %}">
+                <input type="button" value="See on the site">
+            </a>
+        {% else %}
+            <a href="{% url 'account:update_book' book.slug %}">
+                <input type="button" value="Update">
+            </a>
+        {% endif %}
+
+        <a href="{% url 'account:delete_book' book.slug %}">
+            <input type="button" value="Delete">
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'js/row-id.js' %}"></script>
+{% endblock %}

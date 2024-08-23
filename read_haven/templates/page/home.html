@@ -1,0 +1,164 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block title %}
+Read Haven
+{% endblock %}
+
+{% block welcome %}
+<div class="welcome">
+    <div class="img-content">
+        <img src="{% static 'img/home/welcome.avif' %}" alt="welcome image">
+
+        <div class="content">
+            <p id="welcome-title">Buy and sell your textbook for the best price</p>
+            <p id="welcome-description">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                Earum temporibus aperiam officia doloribus, eum ab molestiae atque officiis.
+            </p>
+            <a href="{% url 'book:books' %}">
+                <input type="button" value="Read More">
+            </a>
+        </div>
+    </div>
+
+    <div class="best-seller">
+        <p id="best-seller" class="text-style">Best Seller Books!</p>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for book in best_books %}
+                    <div class="swiper-slide">
+                        <img src="{{ book.cover_image.url }}" alt="best seller img">
+                        <div class="content">
+                            <p id="title">{{ book.title|truncatewords:5 }}</p>
+                            <p>{{ book.author }}</p>
+                            <div class="price-buy">
+                                {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                                    <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+                                {% elif book.availability_and_price_validity == 'Free' %}
+                                    <p id="free">{{ book.availability_and_price_validity }}</p>
+                                {% else %}
+                                    <p id="price">${{ book.price|floatformat:2 }}</p>
+                                {% endif %}
+                                <a href="{% url 'book:book' book.slug %}">
+                                    <input type="button" value="Read More">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block home_section_1 %}
+<div class="section-1">
+    <div class="images">
+        <div class="style-3D"><img src="{% static 'img/home/img1.jpg' %}" alt="img 1"></div>
+    </div>
+    <div class="content">
+        <p id="title">Find Your Favorite Books Her!</p>
+        <p id="description">
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aut sit voluptate cumque rerum eius natus repellat
+            amet excepturi pariatur optio!
+        </p>
+        <div class="statistics">
+            <div>
+                <p>15</p>
+                <p>Skilled and active author on this site</p>
+            </div>
+            <div>
+                <p>80</p>
+                <p>Novel to read to get a good feeling</p>
+            </div>
+            <div>
+                <p>140</p>
+                <p>Educational book for understanding the world</p>
+            </div>
+        </div>
+        <a href="#">
+            <input type="button" value="Read More">
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+{% block home_section_2 %}
+<div class="section-2">
+    <div class="filter-books">
+        <p id="filter-title" class="text-style">Most Visited Books</p>
+        <div class="books-by-filter">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for book in best_books %}
+                    <div class="swiper-slide">
+                        <img src="{{ book.cover_image.url }}" alt="best seller img">
+                        <div class="content">
+                            <p id="title">{{ book.title|truncatewords:5 }}</p>
+                            <p>{{ book.author }}</p>
+                            <div class="price-buy">
+                                {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                                    <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+                                {% elif book.availability_and_price_validity == 'Free' %}
+                                    <p id="free">{{ book.availability_and_price_validity }}</p>
+                                {% else %}
+                                    <p id="price">${{ book.price|floatformat:2 }}</p>
+                                {% endif %}
+                                <a href="{% url 'book:book' book.slug %}">
+                                    <input type="button" value="Read More">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+    <div class="filter-books">
+        <p id="filter-title" class="text-style">From Our Authors</p>
+        <div class="books-by-filter">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for book in our_books %}
+                    <div class="swiper-slide">
+                        <img src="{{ book.cover_image.url }}" alt="best seller img">
+                        <div class="content">
+                            <p id="title">{{ book.title|truncatewords:5 }}</p>
+                            <p>{{ book.author }}</p>
+                            <div class="price-buy">
+                                {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                                    <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+                                {% elif book.availability_and_price_validity == 'Free' %}
+                                    <p id="free">{{ book.availability_and_price_validity }}</p>
+                                {% else %}
+                                    <p id="price">${{ book.price|floatformat:2 }}</p>
+                                {% endif %}
+                                <a href="{% url 'book:book' book.slug %}">
+                                    <input type="button" value="Read More">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{% static 'js/header-swiper.js' %}"></script>
+{% endblock %}

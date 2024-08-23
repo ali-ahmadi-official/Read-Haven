@@ -1,0 +1,117 @@
+@import 'button';
+@import 'base-profile';
+
+.orders-cart {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.orders, .cart {
+    margin: 30px;
+    padding: 30px;
+    width: calc(100vw - 60px);
+    background-color: rgba($color: $footer-color, $alpha: 0.3);
+    border-radius: 20px;
+
+    div {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        a {
+            @include f-c-c;
+        }
+
+        svg {
+            margin-right: 8px;
+        }
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    ul {
+        list-style: none;
+        margin-bottom: 10px;
+
+        li {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: column;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: $body-color;
+            transition: transform 0.5s ease;
+
+            &:hover {
+                transform: translateY(-5px);
+            }
+
+            img {
+                width: 100px;
+                border-radius: 5px;
+                margin-right: 20px;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                margin-top: 15px;
+
+                p:first-child {
+                    font-size: 20px;
+                    margin-bottom: 10px;
+                }
+
+                p:last-child {
+                    @include f-c-c;
+                }
+            }
+
+            form, a {
+                margin-top: 15px;
+                height: auto;
+            }
+
+            button[type=submit] {
+                @include f-c-c;
+                font-weight: 500;
+            }
+        }
+    }
+
+    .more {
+
+        button[type=submit] {
+            @include f-c-c;
+            font-weight: 500;
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .orders, .cart {
+        ul {
+            li {
+                flex-direction: row;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .orders-cart {
+        flex-direction: row;
+    }
+
+    .orders, .cart {
+        width: 45%;
+    }
+}

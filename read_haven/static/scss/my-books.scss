@@ -1,0 +1,47 @@
+@import 'button';
+@import 'base-profile';
+@import 'flex';
+@import 'theme';
+
+.my-books {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    gap: 20px;
+    padding: 20px;
+    overflow-x: scroll;
+
+    img {
+        margin: auto;
+        width: 80px;
+        height: 120px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+    
+    p {
+        @include f-c-c;
+        text-align: center;
+    }
+
+    input {
+        margin: auto;
+    }
+
+    a {
+        @include f-c-c;
+    }
+
+    #p {
+        margin: auto;
+        background-color: rgba($color: green, $alpha: 0.8);
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    #i {
+        margin: auto;
+        background-color: rgba($color: red, $alpha: 0.8);
+        padding: 10px;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/books.css' %}">
+{% endblock %}
+
+{% block title %}
+your search result
+{% endblock %}
+
+{% block search %}
+{% if query %}
+    <div class="books">
+        {% for book in books %}
+            <div class="book">
+                <img src="{{ book.cover_image.url }}" alt="book image">
+                <div class="content">
+                    <p id="title">{{ book.title|truncatewords:5 }}</p>
+                    <p>{{ book.author }}</p>
+                    <div class="price-buy">
+                        {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                            <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+                        {% elif book.availability_and_price_validity == 'Free' %}
+                            <p id="free">{{ book.availability_and_price_validity }}</p>
+                        {% else %}
+                            <p id="price">${{ book.price|floatformat:2 }}</p>
+                        {% endif %}
+                        <a href="{% url 'book:book' book.slug %}">
+                            <input type="button" value="Read More">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    {% if not books %}
+        <h1 class="not">No Result</h1>
+    {% endif %}
+{% else %}
+    <h1 class="h1">Please enter a search query</h1>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/books.css' %}">
+{% endblock %}
+
+{% block title %}
+{% if category.title %}
+    Category: {{ category.title|capfirst }}
+{% elif author.name %}
+    Author: {{ author.name|title }}
+{% else %}
+    All Books
+{% endif %}
+{% endblock %}
+
+{% block books %}
+<div class="condition">
+    {% if category %}
+        <img src="{{ category.category_image.url }}" alt="condition image">
+        <div class="condition-content">
+            <p class="text-style">
+                Category: {{ category.title|capfirst }}
+            </p>
+        </div>
+    {% elif author %}
+        <img src="{{ author.author_image.url }}" alt="condition image">
+        <div class="condition-content">
+            <p class="text-style">
+                Author: {{ author.name|title }}
+            </p>
+        </div>
+    {% else %}
+        <img src="{% static 'img/book/all_books.jpg' %}" alt="condition image">
+        <div class="condition-content">
+            <p class="text-style">
+                All Books
+            </p>
+            <div>
+                <p>Books: {{ total_books }}</p>
+                <p>Free books: {{ free_books }}</p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<div class="books">
+    {% for book in books %}
+        <div class="book">
+            <img src="{{ book.cover_image.url }}" alt="book image">
+            <div class="content">
+                <p id="title">{{ book.title|truncatewords:5 }}</p>
+                <p>{{ book.author }}</p>
+                <div class="price-buy">
+                    {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                        <p id="out_of_stock">{{ book.availability_and_price_validity }}</p>
+                    {% elif book.availability_and_price_validity == 'Free' %}
+                        <p id="free">{{ book.availability_and_price_validity }}</p>
+                    {% else %}
+                        <p id="price">${{ book.price|floatformat:2 }}</p>
+                    {% endif %}
+                    <a href="{% url 'book:book' book.slug %}">
+                        <input type="button" value="Read More">
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block pagination %}
+<div class="page">
+    {% if page_obj.has_previous %}
+        <a href="{% url 'book:books' %}?page={{ page_obj.previous_page_number }}">
+            <div class="ago">
+                <p>Ago</p>
+            </div>
+        </a>
+        {% if page_obj.number > 3 %}
+            <a href="{% url 'book:books' %}?page=1" class="number">1</a>
+            {% if page_obj.number > 4 %}
+                <span class="number">...</span>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% for num in page_obj.paginator.page_range %}
+        {% if page_obj.number == num %}
+            <a href="{% url 'book:books' %}?page={{ num }}" class="number">{{ num }}</a>
+        {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %} 
+            <a href="{% url 'book:books' %}?page={{ num }}" class="number">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+
+    {% if page_obj.has_next %}
+        {% if page_obj.number < page_obj.paginator.num_pages|add:'-3' %}
+            <span class="number">...</span>
+            <a href="{% url 'book:books' %}?page={{ page_obj.paginator.num_pages }}" class="number">{{ page_obj.paginator.num_pages }}</a>
+        {% elif page_obj.number < page_obj.paginator.num_pages|add:'-2' %} 
+            <a href="{% url 'book:books' %}?page={{ page_obj.paginator.num_pages }}" class="number">{{ page_obj.paginator.num_pages }}</a>
+        {% endif %}
+
+        <a href="{% url 'book:books' %}?page={{ page_obj.next_page_number }}">
+            <div class="next">
+                <p>Next</p>
+            </div>
+        </a>
+    {% endif %}
+</div>
+{% endblock %}

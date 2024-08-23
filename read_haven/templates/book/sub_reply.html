@@ -1,0 +1,26 @@
+<div class="subreply">
+    <div class="subreply-author">
+        <img src="{{ subreply.user.profile_image.url }}" alt="image writer">
+        {% if subreply.user.get_full_name %}
+            <p>{{ subreply.user.get_full_name|title }}</p>
+        {% else %}
+            <p>{{ subreply.user }}</p>
+        {% endif %}
+    </div>
+    <div class="subreply-content">
+        <p>{{ subreply.content }}</p>
+        <p>{{ subreply.publish }}</p>
+        <button type="submit" id="btn">Reply ...</button>
+        <form method="post" action="{% url 'book:book-reply-reply' book.slug subreply.id %}">
+            {% csrf_token %}
+            <div>
+                <label>Reply:</label>
+                <textarea name="content" oninput="limitWords(event)" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        {% for subreply in subreply.replies_reply.status %}
+            {% include 'book/sub_reply.html' with subreply=subreply %}
+        {% endfor %}
+    </div>
+</div>

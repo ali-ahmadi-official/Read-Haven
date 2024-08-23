@@ -1,0 +1,178 @@
+@import 'theme';
+@import 'flex';
+@import 'link';
+@import 'search';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: $site-color-3;
+    font-family: "Montserrat", sans-serif;
+}
+
+.list {
+    position: fixed;
+    width: 100%;
+    left: -100%;
+    top: 0;
+    z-index: 10000;
+    transition: all 0.3s ease-in-out;
+
+    .profile-list {
+        @include f-sa-c;
+        height: 70px;
+        background-color: $footer-color;
+
+        .profile {
+            @include f-c-c;
+
+            img {
+                width: 50px;
+                height: 50px;
+                object-fit: cover;
+                border: 3px solid #fff;
+                border-radius: 100%;
+                margin-right: 10px;
+            }
+        }
+
+        svg {
+            cursor: pointer;
+        }
+    }
+
+    ul {
+        list-style: none;
+        height: 100%;
+        padding-top: 20px;
+        background-color: $footer-color;
+        padding-bottom: 20px;
+        min-height: calc(100vh - 70px);
+
+        li {
+            display: flex;
+            justify-content: flex-start;
+            padding: 8px;
+            border-radius: 5px;
+            background-color: $body-color;
+            margin: 20px 40px;
+
+            a {
+                @include f-c-c;
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            svg {
+                margin-right: 8px;
+            }
+        }
+    }
+}
+
+.none {
+    left: 0;
+}
+
+section {
+    width: 100%;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+    background-color: $footer-color;
+
+    #logout-form {
+        height: auto;
+        overflow: visible;
+    }
+}
+
+#logout {
+    @include f-c-c;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 5px;
+
+    p {
+        display: none;
+    }
+}
+
+.url {
+    @include f-c-c;
+    grid-column: 1 / 4;
+    width: 100%;
+}
+
+input[type=search] {
+    width: 130px;
+}
+
+@media screen and (min-width: 768px) {
+    .navbar {
+        @include f-sa-c;
+        height: 70px;
+        padding: 0;
+    }
+
+    .url {
+        width: auto;
+    }
+
+    input[type=search] {
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    body {
+        display: flex;
+        justify-content: space-between;
+        background-color: $body-color;
+        min-height: 100vh;
+    }
+
+    .mobile-svg {
+        display: none;
+    }
+
+    .list {
+        position: static;
+        width: 20%;
+
+        .svg {
+            display: none;
+        }
+
+        .profile-list {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: 40px;
+        }
+    }
+
+    section {
+        width: 80%;
+    }
+
+    #logout {
+        padding: 15px;
+        border-radius: 20px;
+
+        p {
+            display: block;
+        }
+
+        svg {
+            margin-right: 8px;
+        }
+    }
+}

@@ -1,0 +1,229 @@
+{% extends 'base/base.html' %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="{% static 'css/book.css' %}">
+{% endblock %}
+
+{% block title %}
+{{ book.title }}
+{% endblock %}
+
+{% block book %}
+<div class="book-detail">
+    <div class="short-information">
+        <div class="images">
+            <img src="{{ book.cover_image.url }}" alt="book cover image" class="cover">
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    {% for picture in book.photos.all %}
+                    <div class="swiper-slide">
+                        <img src="{{ picture.photos.url }}" alt="more photo" class="photo">
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+        <div class="short-content">
+            <p id="title">{{ book.title }}</p>
+            <div class="book-author">
+                <img src="{{ book.author.author_image.url }}" alt="book author image">
+                <a href="{% url 'book:author' book.author.slug %}">
+                    <p id="author">{{ book.author }}</p>
+                </a>
+            </div>
+            <p id="sort-description">{{ book.description|truncatewords:20 }}</p>
+            <ul class="ul-information">
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+                    </svg>
+                    <p>Categories</p>
+                </li>
+                <ul class="book-category">
+                    {% for category in book.category.status %}
+                        <a href="{% url 'book:category' category.slug %}">
+                            <li>| {{ category.title }} |</li>
+                        </a>
+                    {% endfor %}
+                </ul>
+
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                        <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                    </svg>
+                    <p>Publish year</p>
+                </li>
+                {% if book.book_publish_year_fuction != 0 %}
+                    <li>Year {{ book.book_publish_year }}</li>
+                {% else %}
+                    <li>----</li>
+                {% endif %}
+
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+                        <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
+                    </svg>
+                    <p>Type</p>
+                </li>
+                {% if book.type_of_book == 'p' %}
+                    <li>Paper Book</li>
+                {% elif book.type_of_book == 'e' %}
+                    <li>Electronic Book</li>
+                {% endif %}
+
+                <li>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-wallet2" viewBox="0 0 16 16">
+                        <path d="M12.136.326A1.5 1.5 0 0 1 14 1.78V3h.5A1.5 1.5 0 0 1 16 4.5v9a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 13.5v-9a1.5 1.5 0 0 1 1.432-1.499zM5.562 3H13V1.78a.5.5 0 0 0-.621-.484zM1.5 4a.5.5 0 0 0-.5.5v9a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                    <p>Price</p>
+                </li>
+                {% if book.availability_and_price_validity == 'Out Of Stock' %}
+                    <li id="out_of_stock">{{ book.availability_and_price_validity }}</li>
+                {% elif book.availability_and_price_validity == 'Free' %}
+                    <li id="free">{{ book.availability_and_price_validity }}</li>
+                {% else %}
+                    <li id="price">${{ book.price|floatformat:2 }}</li>
+                {% endif %}
+
+                <form method="post" action="{% url 'account:add_to_cart' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
+                            <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
+                        </svg>
+                        {% if is_in_cart %}
+                            Remove From Cart
+                        {% else %}
+                            Add To Cart
+                        {% endif %}
+                    </button>
+                </form>
+                <form method="post" action="{% url 'account:add_to_orders' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                            <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2z"/>
+                            <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0M7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0"/>
+                        </svg>
+                        {% if is_in_orders %}
+                            Remove From Orders
+                        {% else %}
+                            Add To Orders
+                        {% endif %}
+                    </button>
+                </form>
+            </ul>
+
+            <p id="description">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-window-reverse" viewBox="0 0 16 16">
+                    <path d="M13 6.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5m0 3a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5m-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+                    <path d="M14 0a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zM2 1a1 1 0 0 0-1 1v1h14V2a1 1 0 0 0-1-1zM1 4v10a1 1 0 0 0 1 1h2V4zm4 0v11h9a1 1 0 0 0 1-1V4z"/>
+                </svg>
+                <span>Description:</span> <br> <br>
+                {{ book.description|linebreaksbr }}
+            </p>
+        </div>
+    </div>
+    <form method="post" action="{% url 'book:book-comment' book.slug %}">
+        {% csrf_token %}
+        <h4>Just send us your opinion about this book by entering your message below!</h4>
+        <div>
+            <label>Comment:</label>
+            <textarea name="content" oninput="limitWords(event)" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="comments">
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="author">
+                    <img src="{{ comment.user.profile_image.url }}" alt="image writer">
+                    {% if comment.user.get_full_name %}
+                        <p>{{ comment.user.get_full_name|title }}</p>
+                    {% else %}
+                        <p>{{ comment.user }}</p>
+                    {% endif %}
+                </div>
+                <div class="content">
+                    <p>{{ comment.content }}</p>
+                    <p>{{ comment.publish }}</p>
+                    <button type="submit" id="btn">Reply ...</button>
+                    <form method="post" action="{% url 'book:book-comment-reply' book.slug comment.id %}">
+                        {% csrf_token %}
+                        <div>
+                            <label>Reply:</label>
+                            <textarea name="content" oninput="limitWords(event)" required></textarea>
+                        </div>
+                        <button type="submit">Submit</button>
+                    </form>
+                    {% for reply in comment.replies_comment.status %}
+                        <div class="reply-comment">
+                            <div class="reply-author">
+                                <img src="{{ reply.user.profile_image.url }}" alt="image writer">
+                                {% if reply.user.get_full_name %}
+                                    <p>{{ reply.user.get_full_name|title }}</p>
+                                {% else %}
+                                    <p>{{ reply.user }}</p>
+                                {% endif %}
+                            </div>
+                            <div class="reply-content">
+                                <p>{{ reply.content }}</p>
+                                <p>{{ reply.publish }}</p>
+                                <button type="submit" id="btn">Reply ...</button>
+                                <form method="post" action="{% url 'book:book-reply-reply' book.slug reply.id %}">
+                                    {% csrf_token %}
+                                    <div>
+                                        <label>Reply:</label>
+                                        <textarea name="content" oninput="limitWords(event)" required></textarea>
+                                    </div>
+                                    <button type="submit">Submit</button>
+                                </form>
+                                {% for subreply in reply.replies_reply.status %}
+                                    {% include 'book/sub_reply.html' with subreply=subreply %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<p class="text">Other Books In This Category</p>
+
+<div class="books">
+    {% for similarbook in similarbooks %}
+        <div class="book">
+            <img src="{{ similarbook.cover_image.url }}" alt="similarbook image">
+            <div class="content">
+                <p id="title">{{ similarbook.title|truncatewords:5 }}</p>
+                <p>{{ similarbook.author }}</p>
+                <div class="price-buy">
+                    {% if similarbook.availability_and_price_validity == 'Out Of Stock' %}
+                        <p id="out_of_stock">{{ similarbook.availability_and_price_validity }}</p>
+                    {% elif similarbook.availability_and_price_validity == 'Free' %}
+                        <p id="free">{{ similarbook.availability_and_price_validity }}</p>
+                    {% else %}
+                        <p id="price">${{ similarbook.price|floatformat:2 }}</p>
+                    {% endif %}
+                    <a href="{% url 'book:book' similarbook.slug %}">
+                        <input type="button" value="Read More">
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block script %}
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="{% static 'js/book-swiper.js' %}"></script>
+<script src="{% static 'js/word-filter.js' %}"></script>
+<script src="{% static 'js/reply-form.js' %}"></script>
+{% endblock %}
