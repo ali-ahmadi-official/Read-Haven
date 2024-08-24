@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3i^#4j3l9omd&aga(u7$)-mwk=r(!f$599(6)5!-ua28)p494l
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["aliahmadi1384.pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -80,13 +80,13 @@ WSGI_APPLICATION = 'read_haven.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+import dj_database_url
 
+DATABASES = {
+    'default': dj_database_url.config(
+        default="sqlite:///" + os.path.join(BASE_DIR, "db.sqlite3")
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
