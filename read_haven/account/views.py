@@ -99,15 +99,15 @@ class BookCreateView(LoginRequiredMixin, AuthorRequiredMixin, CreateView):
 
     def form_valid(self, form):
         context = self.get_context_data()
-        author_exist = Author.objects.get(name=self.request.user.get_full_name())
-        if author_exist == False:
+        try:
+            author_exist = Author.objects.get(name=self.request.user.get_full_name())
+            form.instance.author = author_exist
+        except Author.DoesNotExist:
             author_instance = Author()
             author_instance.name = self.request.user.get_full_name()
             author_instance.author_image = self.request.user.profile_image
             author_instance.save()
             form.instance.author = author_instance
-        else:
-            form.instance.author = Author.objects.get(name=self.request.user.get_full_name())
         
         photos = context['photos']
         self.object = form.save()
