@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'comment.apps.CommentConfig',
     'search.apps.SearchConfig',
     'django_sass',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -80,13 +82,16 @@ WSGI_APPLICATION = 'read_haven.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# import dj_database_url
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+   'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'new_schema',
+        'USER': 'root',
+        'PASSWORD': 'sPLRN=uS?@mjDZ2',
+        'HOST': 'localhost',
+        'PORT': '3306',
+   }
 }
 
 
@@ -146,3 +151,9 @@ LOGIN_REDIRECT_URL = "account:dashboard"
 LOGOUT_REDIRECT_URL = "page:home"
 SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAdminUser",
+    ],
+}
